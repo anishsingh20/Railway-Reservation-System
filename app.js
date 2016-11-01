@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongo = require('mongoose');
+var session =  require('client-sessions');
 
 var routes = require(path.join(__dirname , '/routes'));
 
@@ -21,7 +22,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({
+  cookieName: 'session',
+  secret: 'hahsashskdslkdd',
+  duration:2 * 60 * 30 * 2000,  //2 hours duration of session//
+  activeDuration: 2000,
+}));
 app.use('/', routes);
 // app.use('/users', users);
 

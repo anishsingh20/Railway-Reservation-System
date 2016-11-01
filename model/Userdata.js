@@ -4,13 +4,17 @@
 var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 var FormData =  new schema ({
-
-
-
-
-
-
-
+   fname:String,
+   Lname:String,
+   gender:String,
+   age:{type:Number , min:18 , max:70},
+   occupation:String ,
+   pass:{type:String , unique:true},
+   email: { type : String , unique:true} ,
+   mobile:{type:Number ,unique:true} ,
+   country : String ,
+   city : String,
+   state:String
 
 });
 

@@ -1,5 +1,262 @@
-<center>
-<h1><%=title %></h1><hr>
-<h1>Hey guys I Am Anish Sngh Walia</h1>
+<!DOCTYPE html>
+<html>
+<head>
 
-</center>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif|PT+Serif" rel="stylesheet"></head>
+
+<style>
+body {
+  font-family: 'Noto Serif', serif;
+}
+</style>
+<body>
+  <nav class="nav navbar-inverse">
+    <a class="navbar-brand" href="#"><%= title %></a>
+  </nav>
+
+
+
+<br>
+  <hr>
+<br>
+<br>
+
+
+
+  <div class="container">
+
+      <form class="well form-horizontal" action="/signup" method="post">
+  <fieldset>
+
+  <!-- Form Name -->
+  <legend class="text-center">Signup and become a User</legend>
+  <br>
+
+  <!-- Text input-->
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">First Name</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input  name="fname" placeholder="First Name" class="form-control" style="border-radius:0px;padding:20px" type="text">
+      </div>
+    </div>
+  </div>
+
+  <!-- Text input-->
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" >Last Name</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input name="lname" placeholder="Last Name" class="form-control"  style="border-radius:0px;padding:20px" type="text">
+      </div>
+    </div>
+  </div>
+
+
+  <!--Gender-->
+  <!-- radio checks -->
+   <div class="form-group">
+                          <label class="col-md-4 control-label">Gender</label>
+                          <div class="col-md-4">
+                              <div class="radio">
+                                  <label>
+                                      <input type="radio" name="gender" value="male" /> Male
+                                  </label>
+                              </div>
+                              <div class="radio">
+                                  <label>
+                                      <input type="radio" name="gender" value="female" /> Female
+                                  </label>
+                              </div>
+                          </div>
+                      </div>
+
+  <!-- Text input-->
+         <div class="form-group">
+    <label class="col-md-4 control-label">E-Mail</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+    <input name="email" placeholder="E-Mail Address" class="form-control" style="border-radius:0px;padding:20px"  type="email" id="1" required>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" >Password</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input name="password" placeholder="Password" class="form-control"  type="password" id="2" style="border-radius:0px;padding:20px">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+<label class="col-md-4 control-label">Age</label>
+<div class="col-md-4 inputGroupContainer">
+<div class="input-group">
+   <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+<input name="age" placeholder="Age" class="form-control"  type="text" required style="border-radius:0px;padding:20px">
+</div>
+</div>
+</div>
+
+
+  <!-- Text input-->
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">Phone #</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+    <input name="phone" placeholder="(845)555-1212" class="form-control" type="text" required style="border-radius:0px;padding:20px">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">Occupation</label>
+      <div class="col-md-4 selectContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+      <select name="occupation" class="form-control selectpicker"  >
+        <option value=" ">Occupation</option>
+        <option value="Goverment ">Goverment</option>
+        <option value=" Private">Private </option>
+        <option  value=" Public">Public</option>
+        <option value=" Professional" >Professional</option>
+        <option value=" Self-Employed" >Self-Employed</option>
+        <option value="Student ">Student</option>
+        <option value="Other ">Other</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Text input-->
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">City</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+    <input name="city" placeholder="city" class="form-control"  type="text" required style="border-radius:0px;padding:20px">
+      </div>
+    </div>
+  </div>
+
+  <!-- Select Basic -->
+
+
+
+                <!--
+        <option >Delaware</option>
+        <option >District of Columbia</option>
+        <option> Florida</option>
+        <option >Georgia</option>
+        <option >Hawaii</option>
+        <option >daho</option>
+        <option >Illinois</option>
+        <option >Indiana</option>
+        <option >Iowa</option>
+        <option> Kansas</option>
+        <option >Kentucky</option>
+        <option >Louisiana</option>
+        <option>Maine</option>
+        <option >Maryland</option>
+        <option> Mass</option>
+        <option >Michigan</option>
+        <option >Minnesota</option>
+        <option>Mississippi</option>
+        <option>Missouri</option>
+        <option>Montana</option>
+        <option>Nebraska</option>
+        <option>Nevada</option>
+        <option>New Hampshire</option>
+        <option>New Jersey</option>
+        <option>New Mexico</option>
+        <option>New York</option>
+        <option>North Carolina</option>
+        <option>North Dakota</option>
+        <option>Ohio</option>
+        <option>Oklahoma</option>
+        <option>Oregon</option>
+        <option>Pennsylvania</option>
+        <option>Rhode Island</option>
+        <option>South Carolina</option>
+        <option>South Dakota</option>
+        <option>Tennessee</option>
+        <option>Texas</option>
+        <option> Uttah</option>
+        <option>Vermont</option>
+        <option>Virginia</option>
+        <option >Washington</option>
+        <option >West Virginia</option>
+        <option>Wisconsin</option>
+        <option >Wyoming</option>
+      </select>
+    </div>
+  </div>
+  </div> -->
+
+  <!-- Text input-->
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">State</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+    <input name="state" placeholder="State" class="form-control"  type="text" style="border-radius:0px;padding:20px">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">Country</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+    <input name="country" placeholder="Country" class="form-control"  type="text" style="border-radius:0px;padding:20px">
+      </div>
+  </div>
+  </div>
+
+  <!-- Text input-->
+
+
+
+  <!-- Text area -->
+
+
+
+    <!-- Button -->
+    <br>
+  <div class="form-group">
+    <label class="col-md-4 control-label"></label>
+    <div class="col-md-4">
+      <button type="submit" class="btn btn-warning" style="border-radius:0px;padding:10px 25px" >Send <span class="glyphicon glyphicon-send"></span></button>
+    </div>
+  </div>
+
+  </fieldset>
+  </form>
+  </div>
+      </div><!-- /.container -->
+
+</body>
+</html>

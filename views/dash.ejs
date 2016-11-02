@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif|PT+Serif" rel="stylesheet"></head>
+
+<style>
+body {
+  font-family: 'Noto Serif', serif;
+}
+.nav {
+  height:60px;
+}
+
+</style>
+
+
+
+<body>
+<div class="alert alert-success fade in alert-dismissable">
+  <%= expressFlash %>
+</div>
+  <nav class="nav navbar-inverse">
+
+    <a class="navbar-brand" href="#" style="color:white;margin-top:5px">Welcome ! <i><%= users.fname %> <%=users.Lname %></i> </a>
+    <div class="navbar-right" style="margin-right:20px;margin-top:10px">
+      <a class="btn btn-danger" style="border-radius:0px" href="/logout" >Logout</a>
+    </div>
+  </nav>
+
+<div class="jumbotron">
+
+  <h1 class="text-center"> Book Tickets Now </h1>
+
+</div>
+<script>
+$(".alert-dismissable").fadeTo(2000, 500).slideUp(500, function(){
+    $(".alert-dismissable").alert('close');
+});
+
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@ mongoose.connect('mongodb://localhost/train');
 
 /* GET home page. */
 router.get('/',function(req,res) {
-    res.render("home" , {title:'India Railways(IRCTC)' });
+    res.render("home" , {title:'India Railways(IRCTC)' , successMessage:req.flash('successMessage'), errorMessage: req.flash('errorMessage'), msg :req.flash('msg') } );
 
 
 });
@@ -47,6 +47,7 @@ data.save(function(err) {
 
   else {
     res.status(200);
+    req.flash('successMessage', "You have successfully Signed In ! ");
     res.redirect("/");
   }
 
@@ -84,11 +85,14 @@ router.post('/login',function(req,res){
         return res.status(500).send();
       }
       if(!user) {
-        return res.status(401).send();
+        req.flash("errorMessage","Not a Registered user!");
+
+        return res.redirect('/');
       }
       else {
         //storing user's data in browser's cookie to maintain a session for the user and authenticate him each time  //
         req.session.user = user ;
+        req.flash('success', "You have successfully Logged In ! ");
         return res.redirect('/dashboard');
       }
 
@@ -100,15 +104,51 @@ router.post('/login',function(req,res){
 
 //dashborad route which opens when a user logs in and is authenticated and a session is maintained for the user//
 router.get('/dashboard',function(req,res) {
-    res.render('dash', {users : req.session.user} );
+    res.render('dash', {users : req.session.user  , expressFlash: req.flash('success') } );
 });
 
 //route for loggin out user and deleting his data from cookie and resetting the session
 router.get('/logout',function(req,res){
   req.session.reset();
+  req.flash("msg","SuccessFully Logged Out!");
   res.redirect('/');
 
 });
+
+
+router.get('/search', function(req,res) {
+
+
+        res.render('search');
+
+
+
+});
+
+
+
+// router.post('/search',function(req,res) {
+//   var fname = req.body.fname;
+//
+// Userdata.find({ fname:fname },function(err,name) {
+// if(err) {
+//   res.status(500).send;
+// }
+// if(!name) {
+//   res.status(401).send('<h1>User not found</h1>');
+// }
+// else {
+//   res.send(name);
+// }
+//
+// });
+// });
+
+
+
+
+
+
 
 
 

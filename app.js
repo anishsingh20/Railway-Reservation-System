@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongo = require('mongoose');
 var session =  require('client-sessions');
+var flash = require('req-flash');
 
 var routes = require(path.join(__dirname , '/routes'));
 
@@ -28,6 +29,15 @@ app.use(session({
   duration:2 * 60 * 30 * 2000,  //2 hours duration of session//
   activeDuration: 2000,
 }));
+//flash middleware always after session middleware
+app.use(flash({
+  
+
+
+}));
+
+
+
 app.use('/', routes);
 // app.use('/users', users);
 

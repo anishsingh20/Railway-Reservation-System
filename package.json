@@ -15,6 +15,7 @@
     "jade": "~1.11.0",
     "mongoose": "^4.6.5",
     "morgan": "~1.7.0",
+    "req-flash": "0.0.3",
     "serve-favicon": "~2.3.0"
   }
 }

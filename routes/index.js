@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-//creating object for DB File in Model
+//creating Model for User Database
 var Userdata = require('../model/Userdata');
 var mongoose = require('mongoose');
 
@@ -9,8 +9,8 @@ mongoose.connect('mongodb://localhost/train');
 
 /* GET home page. */
 router.get('/',function(req,res) {
-    res.render("home" , {title:'India Railways(IRCTC)' , successMessage:req.flash('successMessage'), errorMessage: req.flash('errorMessage'), msg :req.flash('msg') } );
 
+    res.render('home');
 
 });
 
@@ -47,15 +47,13 @@ data.save(function(err) {
 
   else {
     res.status(200);
-    req.flash('successMessage', "You have successfully Signed In ! ");
+
     res.redirect("/");
   }
 
 });
 
 });
-
-
 
 
 router.get('/getdata',function(req,res) {
@@ -85,14 +83,14 @@ router.post('/login',function(req,res){
         return res.status(500).send();
       }
       if(!user) {
-        req.flash("errorMessage","Not a Registered user!");
+
 
         return res.redirect('/');
       }
       else {
         //storing user's data in browser's cookie to maintain a session for the user and authenticate him each time  //
         req.session.user = user ;
-        req.flash('success', "You have successfully Logged In ! ");
+
         return res.redirect('/dashboard');
       }
 
@@ -104,45 +102,62 @@ router.post('/login',function(req,res){
 
 //dashborad route which opens when a user logs in and is authenticated and a session is maintained for the user//
 router.get('/dashboard',function(req,res) {
-    res.render('dash', {users : req.session.user  , expressFlash: req.flash('success') } );
+    res.render('dash', {users : req.session.user});
 });
 
 //route for loggin out user and deleting his data from cookie and resetting the session
 router.get('/logout',function(req,res){
   req.session.reset();
-  req.flash("msg","SuccessFully Logged Out!");
+
   res.redirect('/');
 
 });
 
 
-router.get('/search', function(req,res) {
+router.get('/search',function(req,res,next) {
+
+  res.render('searchme');
+
+});
 
 
-        res.render('search');
+router.post('/search', function(req,res) {
+
+
+  var fname = req.body.fname;
+
+  //the callback in find function has the response from the server when data is found in DB
+  Userdata.findOne({ fname:fname }, function(err,data) {
+  if(err) {
+  console.log(err);
+  return res.status(500).send();
+  }
+  if(!data) {
+
+  return res.send("Data not Found");
+  }
+  else {
+
+  return res.send(data);
+  }
+
+
 
 
 
 });
 
+});
 
 
-// router.post('/search',function(req,res) {
-//   var fname = req.body.fname;
-//
-// Userdata.find({ fname:fname },function(err,name) {
-// if(err) {
-//   res.status(500).send;
-// }
-// if(!name) {
-//   res.status(401).send('<h1>User not found</h1>');
-// }
-// else {
-//   res.send(name);
-// }
-//
-// });
-// });
+
+
+
+
+
+
+
+
 
 
 

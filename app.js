@@ -6,15 +6,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongo = require('mongoose');
 var session =  require('client-sessions');
-var flash = require('req-flash');
 
-var routes = require(path.join(__dirname , '/routes'));
+
+ var routes = require(path.join(__dirname , '/routes'));
+
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.all('/', routes);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -29,16 +31,12 @@ app.use(session({
   duration:2 * 60 * 30 * 2000,  //2 hours duration of session//
   activeDuration: 2000,
 }));
-//flash middleware always after session middleware
-app.use(flash({
-  
-
-
-}));
 
 
 
-app.use('/', routes);
+
+
+
 // app.use('/users', users);
 
 // catch 404 and forward to error handler
@@ -55,8 +53,8 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
+    res.render('err', {
+      message: error.message,
       error: err
     });
   });
@@ -72,7 +70,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(5555,function(){
+app.listen(5555 ,  function() {
     console.log('App running Successfully, Enjoy!! ');
 });
 

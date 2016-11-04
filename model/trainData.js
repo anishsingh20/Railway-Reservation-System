@@ -4,14 +4,17 @@
 var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 var TrainData =  new schema ({
-
-
-
-
-
-
-
-
+  destination: String ,
+  name:{ type:String , unique:true } ,
+  days : Number ,
+  class: String ,
+  distance: Number  ,
+  travel_time:Number//in hours ,
+  ,
+  reach_time:{ type:Date , default: Date.now } ,
+  start_time:{ type:Date , default: Date.now } ,
+  source:String,
+  type:String
 });
 
 //exporting the DB model for

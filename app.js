@@ -8,7 +8,7 @@ var mongo = require('mongoose');
 var session =  require('client-sessions');
 
 
- var routes = require(path.join(__dirname , '/routes'));
+ var routes = require(path.join(__dirname , 'routes', 'index.js'));
 
 
 var app = express();
@@ -16,7 +16,6 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.all('/', routes);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -32,6 +31,7 @@ app.use(session({
   activeDuration: 2000,
 }));
 
+app.use('/', routes);
 
 
 
@@ -52,9 +52,10 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
+      console.log(err);
     res.status(err.status || 500);
-    res.render('err', {
-      message: error.message,
+    res.render('error', {
+      message: err.message,
       error: err
     });
   });
@@ -63,15 +64,16 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
+    console.log(err);
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
     error: {}
   });
 });
-
+/*
 app.listen(5555 ,  function() {
     console.log('App running Successfully, Enjoy!! ');
 });
-
+*/
 module.exports = app;

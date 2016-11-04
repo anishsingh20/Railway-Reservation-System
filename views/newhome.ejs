@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif|PT+Serif" rel="stylesheet"></head>
+
+<style>
+body {
+  font-family: 'Noto Serif', serif;
+}
+</style>
+<body>
+
+  <nav class="nav navbar-inverse">
+    <a class="navbar-brand" href="#"><%= title %></a>
+  </nav>
+
+  <hr>
+
+  <br>
+
+  <div class="container">
+    <fieldset>
+
+      <form class="well form-horizontal" action="/login" method="post">
+
+
+  <!-- Form Name -->
+
+  <h2 class="text-center" style="margin-top:0px">Login and Book Tickets</h2>
+  <hr>
+
+  <!-- Text input-->
+<!--email-->
+  <div class="form-group">
+    <label class="col-md-4 control-label">Email</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+    <span class="input-group-addon" style="border-radius:0px"><i class="glyphicon glyphicon-user" ></i></span>
+    <input  name="email" placeholder="Email" class="form-control" style="border-radius:0px;padding:20px"  type="email" required>
+      </div>
+    </div>
+  </div>
+
+<!--Password-->
+  <div class="form-group">
+    <label class="col-md-4 control-label">Password</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+    <span class="input-group-addon" style="border-radius:0px"><i class="glyphicon glyphicon-user"></i></span>
+    <input  name="pass" placeholder="password" class="form-control"  type="password" style="border-radius:0px;padding:20px" required>
+      </div>
+    </div>
+  </div>
+<div class="form-group">
+  <div class=" col-sm-6 col-sm-offset-4">
+  <button class="btn btn-primary" type="submit" style="border-radius:0px;padding:10px 25px">Login</button>
+</div>
+</div>
+
+
+</div>
+
+
+
+</form>
+<div class="container">
+<div class="form-group">
+
+
+  <div class=" col-sm-6 col-sm-offset-4">
+    <h2>Not a registered User ?</h2>
+  <a class="btn btn-danger" href="/signin" style="border-radius:0px;padding:10px 25px">Signup</a>
+</div>
+</div>
+</div>
+</fieldset>
+
+
+</body>
+</html>

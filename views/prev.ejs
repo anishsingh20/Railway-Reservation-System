@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="myapp" ng-cloak>
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.css"/>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif|PT+Serif" rel="stylesheet"></head>
+
+
+<body>
+  <nav class="nav navbar-inverse">
+
+    <a class="navbar-brand" href="#" style="color:white;margin-top:5px">Welcome ! <i><%= ticket.fname %> <%=ticket.Lname %></i> </a>
+    <div class="navbar-right" style="margin-right:20px;margin-top:10px">
+      <a class="btn btn-default" style="border-radius:0px" href="/dashboard" >Home</a>
+      <a class="btn btn-danger" style="border-radius:0px" href="/logout" >Logout</a>
+    </div>
+  </nav>
+
+
+  <br>
+  <br>
+  <br>
+  <h2 class="text-center">Booking Details</h2>
+  <div class="jumbotron container text-center">
+    <h2> Train - <%=ticket.train_name %> : <br>On - <%=ticket.travel_date %> <br>
+        No Of People - <%=ticket.people_travelling %> <br>
+        CLass : <%=ticket.class %><br>
+        From  : <%=ticket.from %>    |    To  : <%=ticket.To %>
+          </h2>
+
+      <p>Status : <span style="color:green;font-weight:bold">CONFIRMED</span> </p>
+
+
+  </div>
+
+</body>
+</html>

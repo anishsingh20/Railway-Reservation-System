@@ -2,6 +2,7 @@
 
 
 var mongoose = require('mongoose');
+var train = require('../model/trainData.js');
 var schema = mongoose.Schema;
 var FormData =  new schema ({
    fname:String,
@@ -14,7 +15,13 @@ var FormData =  new schema ({
    mobile:{type:Number ,unique:true} ,
    country : String ,
    city : String,
-   state:String
+   state:String ,
+   train_name :String ,
+   travel_date :Date,
+   people_travelling: String ,
+   class:String ,
+   from: String ,
+   To :String
 
 });
 

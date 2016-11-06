@@ -3,20 +3,21 @@
 
 var mongoose = require('mongoose');
 var schema = mongoose.Schema;
-var TrainData =  new schema ({
+var TrainDataschema =  new schema ({
   destination: String ,
+  pnr:{ type:String , unique:true} ,
   name:{ type:String , unique:true } ,
-  days : Number ,
-  class: String ,
-  distance: Number  ,
-  travel_time:Number//in hours ,
+  days : String ,
+  class: [{ type:String } ] ,
+  distance: String  ,
+  travel_time:String//in hours ,
   ,
-  reach_time:{ type:Date , default: Date.now } ,
-  start_time:{ type:Date , default: Date.now } ,
+  reach_time:{ type:String } ,
+  start_time:{ type:String} ,
   source:String,
   type:String
 });
 
 //exporting the DB model for
-module.exports = mongoose.model('traindetails', TrainData);
+module.exports = mongoose.model('traindetails', TrainDataschema);
 //'traindetails' is the name of the train Collection(table in RDBMS)

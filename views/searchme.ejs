@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html >
 <head>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Noto+Serif|PT+Serif" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 
@@ -15,24 +12,54 @@
 </head>
 
 <body>
-  <form  action="" method="POST">
+  <form action=" " method="POST">
   <div class="jumbotron">
     <div class="form-group">
       <div class="col-sm-6 col-sm-offset-3">
           <input type="text" placeholder="Search For registered Users" class="form-control" name="fname">
           <br>
-          <button type="submit" class="btn btn-warning">Search</button>
+          <button type="submit"   class="btn btn-warning"> Search </button>
       </div>
     </div>
 
   </div>
 </form>
 
-
-<!-- <div class="col-sm-12 text-center">
-    <h2><%=data.fname %> <%=data.Lname %></h2>
+<!-- <div class="col-sm-12 text-center" >
+   <h2>{{data.fname}}</h2>
+   <h2>{{data.Lname}}</h2>
 </div> -->
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <script>
+    var app = angular.module('myapp',[]);
+    app.controller('Myctrl',['$scope','$http', function($scope,$http) {
+
+        $scope.data = [];
+      $scope.getdata = function()
+      {
+      $http({
+          method:'GET' ,
+          url:'/getuser?fname=' + $scope.myname
+
+      }).
+      success(function(data) {
+          $scope.data = data;
+
+
+      }).
+      error(function(err){
+        console.log(err);
+      });
+    }
+    }]);
+
+</script> -->
 </body>
 </html>

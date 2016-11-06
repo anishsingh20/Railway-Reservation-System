@@ -5,10 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongo = require('mongoose');
+
 var session =  require('client-sessions');
 
 
  var routes = require(path.join(__dirname , 'routes', 'index.js'));
+ // var train = require(path.join(__dirname , 'routes', 'train.js'));
+ // var routes = require(path.join(__dirname , '/routes'));
 
 
 var app = express();
@@ -32,6 +35,7 @@ app.use(session({
 }));
 
 app.use('/', routes);
+// app.use('/ ',train);
 
 
 

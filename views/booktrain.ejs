@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html ng-app="myapp" ng-cloak>
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.css"/>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif|PT+Serif" rel="stylesheet"></head>
+<body>
+
+
+
+
+<nav class="nav navbar-inverse">
+
+  <a class="navbar-brand" href="#" style="color:white;margin-top:5px">Welcome ! <i><%= users.fname %> <%=users.Lname %></i> </a>
+  <div class="navbar-right" style="margin-right:20px;margin-top:10px">
+    <a class="btn btn-danger" style="border-radius:0px" href="/logout" >Logout</a>
+  </div>
+</nav>
+<div class="jumbotron text-center">
+    <h4>Train Selected : <%=users.train_name%> </h4>
+  
+
+
+</div>
+
+
+<div class="container">
+  <form class="well form-horizontal" action="/booking" method="POST">
+
+
+<!-- Form Name -->
+
+<h2 class="text-center" style="margin-top:0px">Reserve Train</h2>
+<hr>
+
+<!-- Text input-->
+<!--No of people-->
+<div class="form-group">
+<label class="col-md-4 control-label">No of Persons</label>
+<div class="col-md-4 inputGroupContainer">
+<div class="input-group">
+<span class="input-group-addon" style="border-radius:0px"><i class="glyphicon glyphicon-user" ></i></span>
+<input  name="person" placeholder="No of Passangers" class="form-control" style="border-radius:0px;padding:20px"  type="number" required>
+  </div>
+</div>
+</div>
+
+<!--Date of travelling-->
+<div class="form-group">
+<label class="col-md-4 control-label">Date of Travelling</label>
+<div class="col-md-4 inputGroupContainer">
+<div class="input-group">
+<span class="input-group-addon" style="border-radius:0px"></span>
+<input  name="date" placeholder="date of travelling" class="form-control"  type="date" style="border-radius:0px;padding:20px" required>
+  </div>
+</div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label">Select Class</label>
+    <div class="col-md-4 inputGroupContainer">
+    <select name="class">
+      <option value="1AC">1 AC</option>
+      <option value="2AC">2 AC</option>
+      <option value="3AC">3 AC</option>
+      <option value="Sleeper">Sleeper</option>
+
+    </select>
+  </div>
+</div>
+
+
+<div class="form-group">
+    <label class="col-md-4 control-label">From</label>
+    <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+      <span class="input-group-addon" style="border-radius:0px"><i class="glyphicon glyphicon-user" ></i></span>
+      <input  name="source" placeholder="From" class="form-control"  type="text" style="border-radius:0px;padding:20px" required>
+  </div>
+</div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label">From</label>
+    <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+      <span class="input-group-addon" style="border-radius:0px"><i class="glyphicon glyphicon-user" ></i></span>
+
+      <input  name="to" placeholder="To" class="form-control"  type="text" style="border-radius:0px;padding:20px" required>
+  </div>
+</div>
+</div>
+
+
+
+<div class="form-group">
+<div class=" col-sm-6 col-sm-offset-4">
+
+<button class="btn btn-primary" type="submit" style="border-radius:0px;padding:10px 25px">Book</button>
+</div>
+</div>
+
+
+</div>
+
+
+
+</form>
+
+</div>
+</body>
+
+</html>

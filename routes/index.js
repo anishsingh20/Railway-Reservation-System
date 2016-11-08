@@ -12,13 +12,13 @@ mongoose.connect('mongodb://localhost/train');
 /* GET home page. */
 router.get('/',function(req,res) {
 
-    res.render('home');
+    res.render('login');
 
 });
 
 
 router.get('/signin', function(req, res, next) {
-  res.render('index', { title: 'Railway reservation System' });
+  res.render('signup', { title: 'Railway reservation System' });
 
   //if we don't want to use any view engine then we can simply use res.sendfile('PATH/FILENAME');
 });
@@ -124,41 +124,13 @@ router.get('/search',function(req,res,next) {
 });
 
 //in 'post' method we parse form's body to access the value of user input data using req.body //
-router.post('/search', function(req,res) {
-
-
-  var fname = req.body.fname;
-
-  //the callback in find function has the response from the server when data is found in DB
-  Userdata.findOne({ fname:fname }, function(err,data) {
-  if(err) {
-  console.log(err);
-  return res.status(500).send();
-  }
-  if(!data) {
-
-  return res.send("User not found");
-  }
-  else {
-
-        res.render('query', { Data:data});
-  }
-
-
-
-
-
-});
-
-});
-
-
-
-//in 'get' method as we know parameters are passed in URL in the form's query so we access it using req.query //
-// router.get('/getuser',function(req,res) {
+// router.post('/search', function(req,res) {
 //
 //
-//   Userdata.findOne({ fname:req.query.fname }, function(err,data) {
+//   var fname = req.body.fname;
+//
+//   //the callback in find function has the response from the server when data is found in DB
+//   Userdata.findOne({ fname:fname }, function(err,data) {
 //   if(err) {
 //   console.log(err);
 //   return res.status(500).send();
@@ -169,20 +141,65 @@ router.post('/search', function(req,res) {
 //   }
 //   else {
 //
-//       res.json(data);
-//
+//         res.render('query', { Data:data});
 //   }
 //
-//
-//
-//
-//
+
+
+
+
 // });
 //
 // });
 
-// A get route for retriving train data in angular //
+
+
+//in 'get' method as we know parameters are passed in URL in the form's query so we access it using req.query //
+router.get('/getuser',function(req,res) {
+
+
+  Userdata.findOne({ fname:req.query.fname }, function(err,data) {
+  if(err) {
+  console.log(err);
+  return res.status(500).send();
+  }
+  if(!data) {
+
+  return res.send("User not found");
+  }
+  else {
+
+      res.json(data);
+
+  }
+
+
+
+
+
+});
+
+});
+
+
+
+//a GET route for searching a Train depending on the Query passed in the GET route
+//in 'get' method as we know parameters are passed in URL in the form's query so we access it using req.query //
 router.get('/traindata',function(req,res) {
+    train.find({ type:req.query.type },function(err,docs) {
+        if(err) {
+          res.status(404).send();
+
+        }
+        else {
+          res.json(docs);
+        }
+    });
+});
+
+
+// A get route which will query complete Train DB and all of its documents(rows) for retriving train data in angularJs  //
+router.get('/querytrains',function(req,res) {
     train.find({ },function(err,docs) {
         if(err) {
           res.status(404).send();
@@ -193,6 +210,7 @@ router.get('/traindata',function(req,res) {
         }
     });
 });
+
 
 
 
@@ -251,7 +269,7 @@ router.get('/bookingdetails',function(req,res) {
         res.status(404).send();
       }
       else {
-        return res.render('prev', { ticket: train });
+        return res.render('ticket', { ticket: train });
       }
 
 
@@ -260,8 +278,7 @@ router.get('/bookingdetails',function(req,res) {
 
 });
 
-
-
+//POST route for user to book train
 router.post('/booking',function(req,res){
     var people = req.body.person;
     var date = req.body.date ;
@@ -282,8 +299,20 @@ router.post('/booking',function(req,res){
 });
 
 
+//get route to delete a train reservation made by user using $unset property of MongoDB which helps in removing only  particular fields(attributes/cols)
+router.get('/delbooking',function(req,res) {
+  Userdata.update({fname:req.session.user.fname} , { $unset : { train_name: ' ' , travel_date: ' ' , people_travelling: '  ' , class: ' ' , from:'' , To:'' } } ,function(err) {
+    if(err) {
+      console.log(err);
 
+    }
+    else {
+      res.redirect('/dashboard');
+    }
 
+  });
+
+});
 
 
 

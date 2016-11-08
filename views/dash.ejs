@@ -42,9 +42,11 @@ body {
 <h2 class="text-center">Train Details</h2>
 <center>
   <div class="button-group">
-<button style="border-radius:0" class="btn btn-warning" ng-click="showtrain()">Show Trains</button>
+<button style="border-radius:0;padding:10px 25px" class="btn btn-warning" ng-click="showtrain()">Show Trains</button>
   <!-- <a class="btn btn-primary" href="/">Book Now </a> -->
-  <a class="btn btn-primary" href="/bookingdetails">Booking Details </a>
+  <a class="btn btn-primary" style="border-radius:0;padding:10px 25px" href="/bookingdetails">Booking Details </a>
+  <a style="border-radius:0;padding:10px 25px" class="btn btn-warning" href="/search" >Search For Trains</a>
+
 </div>
 </center>
 <br>
@@ -55,6 +57,7 @@ body {
     <thead>
         <tr>
             <th>PNR-No</th>
+            <th>Type</th>
 
             <th> Name</th>
             <th> Source</th>
@@ -70,6 +73,7 @@ body {
 
 
             <td>{{d.pnr}}</td>
+            <td>{{d.type}}</td>
             <td><input type="checkbox" name="train" value="{{d.name}} from {{d.source}} to {{d.destination }}">  {{d.name}}</td>
             <td>{{d.source}}</td>
             <td>{{d.destination}}</td>
@@ -79,9 +83,9 @@ body {
           </tr>
         </tbody>
       </table>
-
-      <button class="btn btn-primary" type="submit">Book Now </button>
-
+      <center>
+      <button class="btn btn-primary " style="border-radius:0;padding:10px 25px" type="submit">Book Now </button>
+    </center>
 </form>
 
 
@@ -110,9 +114,10 @@ $scope.showtrain = function()
 {
   $http({
       method:'GET' ,
-      url:'/traindata'
+      url:'/querytrains'
 
   }).
+  //data is the response or the data send by by the server
   success(function(data) {
       $scope.train = data;
 

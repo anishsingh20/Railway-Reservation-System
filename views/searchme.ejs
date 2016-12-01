@@ -48,11 +48,13 @@
 <br>
 <hr>
 <!--Searched Train data getting from the server-->
+<form method="POST" action="/searcht">
 <div class="col-sm-12 text-center">
 
   <table class="table  table-bordered table-hover">
       <thead>
           <tr>
+              <th>Select</th>
               <th>PNR-No</th>
               <th>Type</th>
               <th> Name</th>
@@ -67,7 +69,7 @@
 
           <tr ng-repeat="d in data">
 
-
+              <td><input type="checkbox" name="train" value="{{d.name}} from {{d.source}} to {{d.destination}}"></td>
               <td>{{d.pnr}}</td>
               <td>{{d.type}}</td>
               <td>{{d.name}}</td>
@@ -82,7 +84,11 @@
 
 
 
+
 </div>
+
+<input type="submit" class="btn btn-default" value="Proceed">
+</form>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -104,6 +110,7 @@
 
 
       }).
+      //callback or response from the server
       success(function(data) {
           $scope.data = data;
 

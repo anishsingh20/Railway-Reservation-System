@@ -1,10 +1,17 @@
 var express = require('express');
 var router = express.Router();
+var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 //creating Model for User Database
 var Userdata = require('../model/Userdata');
 var mongoose = require('mongoose');
 var train = require('../model/trainData');
 mongoose.connect('mongodb://localhost/train');
+
+
+
+
+
+
 
 
 //name of the Database
@@ -74,13 +81,64 @@ router.get('/getdata',function(req,res) {
 
 });
 
+router.get('/mailus',function(req,res) {
+    res.render('mail');
+});
+
+
+router.post('/sendmail',function(req,res) {
+
+  var request = sg.emptyRequest({
+    method: 'POST',
+    path: '/v3/mail/send',
+
+    body: {
+      personalizations: [
+        {
+          to: [
+            {
+              email: req.body.email1,
+            },
+          ],
+          subject: 'Hello World from the SendGrid Node.js Library!',
+        },
+      ],
+      from: {
+        email: 'anishsingh.walia2015@vit.ac.in',
+      },
+      content: [
+        {
+          type: 'text/plain',
+          value: 'Hello, Anish! This is Sendgrid and your first email deploying, Congratulations!!!',
+        },
+      ],
+    },
+  });
+
+
+
+    sg.API(request, function(error, response) {
+      if(error) {
+        console.log(error);
+        return;
+      }
+      res.status(200).send('Mail Successfully send!! Hurray');
+
+  });
+
+});
+
+
 //login endpoint -- checks if a user is registered in the DB or not//
 router.post('/login',function(req,res){
     //stroring user's email and password in these variables
     var email  = req.body.email;
     var password = req.body.pass;
 
-    Userdata.findOne({email:email , pass: password},function(err,user){
+
+
+  Userdata.findOne({email:email , pass: password},function(err,user){
+
       if(err) {
         return res.status(500).send();
       }
@@ -98,9 +156,9 @@ router.post('/login',function(req,res){
 
 
     });
-
-
 });
+
+
 
 //dashborad route which opens when a user logs in and is authenticated and a session is maintained for the user//
 router.get('/dashboard',function(req,res) {
@@ -119,6 +177,24 @@ router.get('/logout',function(req,res){
 router.get('/search',function(req,res,next) {
 
   res.render('searchme');
+
+
+});
+
+
+
+router.post('/searcht',function(req,res) {
+
+  var trainDet  = req.body.train;
+  Userdata.update({fname:req.session.user.fname},{$set:{train_name:trainDet}}, function(err) {
+
+      if(err) {
+        console.log(err)
+      }
+      res.redirect('/train');
+
+
+  });
 
 
 });
@@ -236,7 +312,7 @@ router.post('/book',function(req,res) {
 
 //route to book train
 router.get('/train',function(req,res) {
-
+    //querying the updated Details of the user and using that updated train details in the view
     Userdata.findOne({fname:req.session.user.fname},function(err, tname) {
       if(err) {
         res.status(500).send();
